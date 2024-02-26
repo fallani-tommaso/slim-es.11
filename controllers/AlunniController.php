@@ -3,6 +3,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 include __DIR__ .'/../Classe.php';
+include __DIR__ .'/../views/Show.php';
 include __DIR__ . '/../views/Alunni.php';
 
 class AlunniController{
@@ -10,7 +11,16 @@ class AlunniController{
         $miaclasse = new Classe();
         $view = new Alunni();
         $view->setData($miaclasse);
-        $response ->getBody()->write($view->render());
+        $response->getBody()->write($view->render());
+        return $response;
+    }
+    function show(Request $request, Response $response, $args){
+        $miaclasse = new Classe();
+        $nome = $args['nome_alunno'];
+        $x['alunno'] = $miaclasse->getAlunnoByNome($nome);
+        $view = new Show();
+        $view->setData($x);
+        $response->getBody()->write($view->render());
         return $response;
 
     }

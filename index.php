@@ -8,5 +8,6 @@ $app = AppFactory::create();
 
 $app->get('/alunni', 'AlunniController:index');
 
+$app->get('/alunni/{nome_alunno}', 'AlunniController:show');
 
 $app->run();

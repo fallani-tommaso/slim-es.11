@@ -3,11 +3,11 @@ require __DIR__ .'/Alunno.php';
 
 class Classe{
     protected $alunni = [];
-    //protected $nome;
+    protected $nome;
     public function __construct()
     {
         //creazione array oggetti alunno
-        //$this->nome = "5BIA";
+        $this->nome = "5BIA";
         $alunno1 = new Alunno("Tommaso", "Fallani", 18);
         $alunno2 = new Alunno("Isacco", "Pieri", 19);
         $alunno3 = new Alunno("Davide", "Aiazzi", 4);
@@ -17,15 +17,22 @@ class Classe{
 
     }
 
-    /*public function getNome(){
+    public function getNome(){
         return $this->nome;
-    }*/
+    }
 
     function getArray(){
         return $this->alunni;
     }
 
-    
+    public function getAlunnoByNome($nome) {
+        foreach($this->alunni as $n){
+            if($nome == $n-> getNome()) {
+                return $n;
+            }
+        }
+        return null;
+    }
 }
 
 
