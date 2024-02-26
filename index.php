@@ -10,4 +10,7 @@ $app->get('/alunni', 'AlunniController:index');
 
 $app->get('/alunni/{nome_alunno}', 'AlunniController:show');
 
+$app->get('/json/alunni', 'AlunniController:json_alunni');
+
+
 $app->run();

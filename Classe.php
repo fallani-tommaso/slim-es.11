@@ -1,9 +1,10 @@
 <?php
 require __DIR__ .'/Alunno.php';
 
-class Classe{
-    protected $alunni = [];
+class Classe implements JsonSerializable{ 
     protected $nome;
+    protected $alunni = [];
+    
     public function __construct()
     {
         //creazione array oggetti alunno
@@ -32,6 +33,15 @@ class Classe{
             }
         }
         return null;
+    }
+
+    public function jsonSerialize() {
+        $attrs = [];
+        $class_vars = get_class_vars(get_class($this));
+        foreach ($class_vars as $name => $value) {
+            $attrs[$name]=$this->{$name};
+        }
+        return $attrs;
     }
 }
 
