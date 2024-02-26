@@ -29,8 +29,21 @@ class AlunniController{
     function json_alunni(Request $request, Response $response, $args){
         $miaclasse = new Classe();
         $response->getBody()->write(json_encode($miaclasse));
-        return $response->withHeader("Content-type","application/json");
+        return $response->withHeader("Content-type","application/json")->withStatus(200);
     }
-    //return $response->withHeader("Content-type","application/json")->withStatus(200);
+
+    function json_show(Request $request, Response $response, $args){
+        $miaclasse = new Classe();
+        $nome = $args['nome_alunno'];
+        $x = $miaclasse->getAlunnoByNome($nome);
+        if($x)
+        {
+            $response->getBody()->write(json_encode($x));
+            return $response->withHeader("Content-type","application/json")->withStatus(200);
+        }    
+
+        $response->getBody()->write(json_encode(['Error'=>'Alunno non trovato']));
+        return $response->withHeader("Content-type","application/json")->withStatus(404);
+    }
 }
 ?>
