@@ -10,8 +10,7 @@ class Alunno implements JsonSerializable{
         $this->nome = $nome;
         $this->cognome = $cognome;
         $this->eta = $eta;
-    } 
-    
+    }
     // Metodi
     public function getNome() {
         return $this->nome;

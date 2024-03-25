@@ -6,13 +6,15 @@ include __DIR__ .'/controllers/AlunniController.php';
 
 $app = AppFactory::create();
 
-$app->get('/alunni', 'AlunniController:index');
+$app->get('/alunni', 'AlunniController:json_alunni');
 
-$app->get('/alunni/{nome_alunno}', 'AlunniController:show');
+$app->get('/alunni/{nome_alunno}', 'AlunniController:json_show');
 
-$app->get('/json/alunni', 'AlunniController:json_alunni');
+$app->post('/alunni', 'AlunniController:json_post');
 
-$app->get('/json/alunni/{nome_alunno}', 'AlunniController:json_show');
+$app->put('/alunni/{id}', 'AlunniController:json_put');
+
+$app->delete('/alunni/{id}', 'AlunniController:json_delete');
 
 
 $app->run();
